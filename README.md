@@ -17,15 +17,11 @@ admin
 |   └── index.html -- index
 ├── src   -- 源代码
 │   ├── api  -- 所有请求
-│   ├── assets  --  主题 字体等静态资源
+│   ├── assets  --  照片，样式等静态资源
 |   ├── components -- components组件
-|   ├── core -- gva抽离的一些前端资源
-|   |   ├── config.js -- 配置文件
-|   |   └── element_lazy.js -- elementt按需引入文件
-|   |   └── gin-vue-admin.js -- gva前端控制库
-|   ├── directive -- 公用方法
-|   ├── mixins -- 公用方法
 |   ├── router -- 路由权限
+|   ├── enum -- 包含所有的枚举
+|   ├── interface -- 包含所有的interface接口
 |   ├── store -- store
 |   |   ├── modules -- modules
 |   |   |   ├── dictionary.js -- 动态路由
@@ -58,10 +54,6 @@ admin
 │   ├── App.vue  -- 入口页面
 │   ├── main.js  -- 入口文件 加载组件 初始化等
 │   └── permission.js  -- 跳转
-├── build.config.js  -- 环境变量build配置
-├── openDocument.js  -- 商用代码公司自用产品无需授权
-├── .babelrc    -- babel-loader 配置
-├── .travis.yml -- 自动化CI配置
 ├── vue.config.js  -- vue-cli 配置
 └── package.json  -- package.json
 ```
