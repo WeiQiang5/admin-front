@@ -1,6 +1,7 @@
 # Vue 3 + TypeScript + Vite + tailwindcss 项目
 
-1.前后端参考 gin-vue-admin 进行学习
+1. 前后端参考 gin-vue-admin 进行学习
+2. 后端使用 nestjs,后面转为 go
 
 # 下载下来的步骤
 
