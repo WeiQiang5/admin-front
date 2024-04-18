@@ -99,16 +99,16 @@ class Request {
     ElMessage.error(message);
   }
 
-  get<T>(url: string, config: AxiosRequestConfig<T>): Result<T> {
+  get<T>(url: string, config: AxiosRequestConfig<T>): Promise<Result<T>> {
     return this.service.get(url, config);
   }
-  post<T>(url: string, config: AxiosRequestConfig<T>): Result<T> {
+  post<T>(url: string, config: AxiosRequestConfig<T>): Promise<Result<T>> {
     return this.service.post(url, config.data, config);
   }
-  put<T>(url: string, config: AxiosRequestConfig<T>): Result<T> {
+  put<T>(url: string, config: AxiosRequestConfig<T>): Promise<Result<T>> {
     return this.service.put(url, config.data, config);
   }
-  delete<T>(url: string, config: AxiosRequestConfig<T>): Result<T> {
+  delete<T>(url: string, config: AxiosRequestConfig<T>): Promise<Result<T>> {
     return this.service.get(url, config);
   }
 }

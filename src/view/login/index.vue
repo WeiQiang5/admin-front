@@ -47,9 +47,10 @@
 
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
-import type { FormInstance, FormRules } from "element-plus";
+import { ElMessage, type FormInstance, type FormRules } from "element-plus";
 import { Login } from "@/interface/user";
 import { login } from "@/api/login";
+import { HttpStatus } from "@/enum/http.enum";
 // 实例
 const formRef = ref<FormInstance>();
 // 表单数据
@@ -72,6 +73,9 @@ const submitForm = (formEl: FormInstance | undefined) => {
     if (valid) {
       console.log("submit!");
       const res = await login(loginForm);
+      if (res.code === HttpStatus.OK) {
+        ElMessage.success("登录成功");
+      }
       console.log(res);
     } else {
       console.log("error submit!");
