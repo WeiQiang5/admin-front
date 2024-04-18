@@ -48,7 +48,8 @@
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
-import { Login } from "@/interface/user.ts";
+import { Login } from "@/interface/user";
+import { login } from "@/api/login";
 // 实例
 const formRef = ref<FormInstance>();
 // 表单数据
@@ -67,9 +68,11 @@ const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   console.log(111);
 
-  formEl.validate((valid) => {
+  formEl.validate(async (valid) => {
     if (valid) {
       console.log("submit!");
+      const res = await login(loginForm);
+      console.log(res);
     } else {
       console.log("error submit!");
       return false;

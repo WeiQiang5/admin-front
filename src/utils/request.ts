@@ -13,20 +13,20 @@ import { ElMessage, ElMessageBox } from "element-plus";
 interface Result<T> {
   code: number;
   result: T;
-  msg: string;
+  message: string;
 }
 
 class Request {
   service: AxiosInstance;
   baseConfig: CreateAxiosDefaults = {
-    baseURL: import.meta.env.VITE_BASE_PATH,
+    baseURL: "/api",
     timeout: 10000,
     withCredentials: true,
   };
   constructor(config: AxiosRequestConfig) {
     // 实例化axios
     this.service = axios.create(Object.assign(this.baseConfig, config));
-
+    console.log("this.service", Object.assign(this.baseConfig, config));
     // 设置请求拦截器
     this.service.interceptors.request.use(
       (config: AxiosRequestConfig) => {
@@ -66,8 +66,8 @@ class Request {
           return Promise.reject("登录过期");
         }
         if (data.code && data.code !== HttpStatus.OK) {
-          ElMessage.error(data.msg);
-          return Promise.reject(data.msg);
+          ElMessage.error(data.message);
+          return Promise.reject(data.message);
         }
         return data;
       },
@@ -83,6 +83,9 @@ class Request {
   public handleCode(code: HttpStatus): void {
     let message = "";
     switch (code) {
+      case 400:
+        message = "操作异常";
+        break;
       case 401:
         message = "登陆失败,请重新登录";
         break;
@@ -96,16 +99,16 @@ class Request {
     ElMessage.error(message);
   }
 
-  get<T>(url: string, config: AxiosRequestConfig<T>) {
+  get<T>(url: string, config: AxiosRequestConfig<T>): Result<T> {
     return this.service.get(url, config);
   }
-  post<T>(url: string, config: AxiosRequestConfig<T>) {
+  post<T>(url: string, config: AxiosRequestConfig<T>): Result<T> {
     return this.service.post(url, config.data, config);
   }
-  put<T>(url: string, config: AxiosRequestConfig<T>) {
+  put<T>(url: string, config: AxiosRequestConfig<T>): Result<T> {
     return this.service.put(url, config.data, config);
   }
-  delete<T>(url: string, config: AxiosRequestConfig<T>) {
+  delete<T>(url: string, config: AxiosRequestConfig<T>): Result<T> {
     return this.service.get(url, config);
   }
 }
