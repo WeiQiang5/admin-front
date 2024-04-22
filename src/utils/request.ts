@@ -1,4 +1,4 @@
-import { HttpStatus } from "@/enum/http.enum";
+import { HttpStatus } from "@/enum/httpStatus";
 import axios, {
   AxiosError,
   AxiosInstance,

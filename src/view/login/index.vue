@@ -48,9 +48,9 @@
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
 import { ElMessage, type FormInstance, type FormRules } from "element-plus";
-import { Login } from "@/interface/user";
+import { Login } from "@/interface/auth";
 import { login } from "@/api/login";
-import { HttpStatus } from "@/enum/http.enum";
+import { HttpStatus } from "@/enum/httpStatus";
 // 实例
 const formRef = ref<FormInstance>();
 // 表单数据
@@ -67,8 +67,6 @@ const rules = reactive<FormRules<Login>>({
 const submitForm = (formEl: FormInstance | undefined) => {
   console.log(formEl);
   if (!formEl) return;
-  console.log(111);
-
   formEl.validate(async (valid) => {
     if (valid) {
       console.log("submit!");
